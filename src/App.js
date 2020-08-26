@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 import './App.css'
 
+const taskList = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
+
 function App() {
 
-  const [ tasks, setTasks ] = useState([]);
+  const [ tasks, setTasks ] = useState(taskList);
 
   const [ todo, setTodo ] = useState({
       id: '',
@@ -108,6 +110,11 @@ const checkPriority = id => {
             }
         });
     }
+
+    // ----------------------localStorage setting---------------------
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+      })
     
   return (
     <div className="main-wrapper">
