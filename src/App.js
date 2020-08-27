@@ -11,10 +11,6 @@ function App() {
 
   const [ tasks, setTasks ] = useState(taskList);
 
-// Temporary states for array manipulation
-//   const [ tempTask, setTempTask ] = useState()
-//   const [ tempList, setTempList ] = useState([]);
-
   const [ todo, setTodo ] = useState({
       id: '',
       task: '',
@@ -73,21 +69,14 @@ function App() {
           } 
           return task
         })
-        setTasks(updatedTodo)
-
-        // const orderedList = tasks.map(task => {
-        //     if(task.isCompleted){
-        //         for(let i = 0; i < tasks.length; i++){
-        //             if(!tasks[i].isCompleted){
-        //                 let temp = tasks[i];
-        //                 tasks[i] = tasks[tasks.indexOf(task)];
-        //                 tasks[tasks.indexOf(task)] = temp;
-        //             }
-        //         }
-        //     }
-        //     return tasks;
-        // })  
-  }
+        setTasks(updatedTodo.sort((a, b) => {
+            if(a.isCompleted){
+                return 1
+            } else {
+                return -1
+            }
+        }))
+    }
  
 // **********************************************************
 // ***********************************************************
@@ -101,22 +90,14 @@ function App() {
         } 
         return task
       })
-      setTasks(updatedTodo)
+      setTasks(updatedTodo.sort((a, b) => {
+          if(a.isImportant){
+              return -1
+          } else {
+              return 1
+          }
+      }))  
 }
-
-const checkPriority = id => {
-    // const updatedTodos = tasks.map(task => {
-    //     if(task.id === id){
-    //         let temp = tasks[0]
-    //         tasks[tasks.indexOf(task)] = temp
-    //         tasks[0] = task
-    //     }  return task
-    // })
-    // setTasks(updatedTodos)
-    // console.log(tasks)
-}
-// console.log('old tasks')
-// console.log(tasks)
 
     const handleEdit = id => {
         tasks.forEach(task => {
@@ -150,7 +131,6 @@ const checkPriority = id => {
             toggleCompleted={toggleCompleted}
             togglePriority={togglePriority}
             handleEdit={handleEdit}   
-            checkPriority={checkPriority} 
         />
         </div>
     </div>

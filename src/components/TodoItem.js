@@ -2,7 +2,7 @@ import React from 'react'
 import { MdDelete, MdDoneAll, MdEdit } from 'react-icons/md'
 import { FcHighPriority } from "react-icons/fc";
 
-export default function TodoItem( { entry, handleDelete, toggleCompleted, togglePriority, handleEdit, checkPriority } ) {
+export default function TodoItem( { entry, handleDelete, toggleCompleted, togglePriority, handleEdit } ) {
 
     return (
         <div className="item-group">
@@ -17,10 +17,7 @@ export default function TodoItem( { entry, handleDelete, toggleCompleted, toggle
                 <button onClick={() => {toggleCompleted(entry.id)}}>
                     <MdDoneAll  size={20} style={{ color: entry.isCompleted ? 'green' : 'grey' }} />
                 </button>
-                <button onClick={() => {
-                    togglePriority(entry.id);
-                    checkPriority(entry.id);
-                }}>
+                <button onClick={() => { togglePriority(entry.id); }}>
                     <FcHighPriority  size={18} />
                 </button>
                 <button onClick={() => handleEdit(entry.id)}>
