@@ -3,10 +3,14 @@ import { MdDelete, MdDoneAll, MdEdit } from 'react-icons/md'
 import { FcHighPriority } from "react-icons/fc";
 
 export default function TodoItem( { entry, handleDelete, toggleCompleted, togglePriority, handleEdit, checkPriority } ) {
+
     return (
         <div className="item-group">
-                <p className={`${entry.isCompleted ? 'completed' : ''}`}>{entry.task}</p>
-            <div className="item-btns">
+                <p 
+                className={`${entry.isCompleted ? 'completed' : ''}  ${entry.isImportant ? 'important' : ''}`}
+                >
+                    {entry.task}</p>
+                <div className="item-btns">
                 <button onClick={()=>handleDelete(entry.id)}>
                     <MdDelete size={18} style={{ color: 'red'}} />
                 </button>

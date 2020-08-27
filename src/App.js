@@ -11,6 +11,10 @@ function App() {
 
   const [ tasks, setTasks ] = useState(taskList);
 
+// Temporary states for array manipulation
+//   const [ tempTask, setTempTask ] = useState()
+//   const [ tempList, setTempList ] = useState([]);
+
   const [ todo, setTodo ] = useState({
       id: '',
       task: '',
@@ -60,6 +64,8 @@ function App() {
     setTasks(updatedTodo)
   }
 
+//   ----------------Task Completion Settings-----------
+
   const toggleCompleted = id => {
       const updatedTodo = tasks.map(task => {
           if(task.id === id){
@@ -68,7 +74,23 @@ function App() {
           return task
         })
         setTasks(updatedTodo)
+
+        // const orderedList = tasks.map(task => {
+        //     if(task.isCompleted){
+        //         for(let i = 0; i < tasks.length; i++){
+        //             if(!tasks[i].isCompleted){
+        //                 let temp = tasks[i];
+        //                 tasks[i] = tasks[tasks.indexOf(task)];
+        //                 tasks[tasks.indexOf(task)] = temp;
+        //             }
+        //         }
+        //     }
+        //     return tasks;
+        // })  
   }
+ 
+// **********************************************************
+// ***********************************************************
 
 //   --------------Priority Settings------------
 
